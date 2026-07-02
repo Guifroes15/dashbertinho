@@ -1,54 +1,27 @@
-// Mapeamento storeId → Ad Account ID do Meta
 export const META_ACCOUNTS: Record<string, string> = {
-  // Grupo Yamcol
-  'stanley':        'act_628628813651209',
-  'tommy':          'act_983453527541382',
-  'milon':          'act_1155969356388532',
-  'taco':           'act_2246831665779408',
-  'vh-boulevard':   'act_739663585617111',
-  'vh-bosque':      'act_739663585617111', // mesma conta
-  'vh-fortaleza':   'act_1497630464987005',
-  'vh-ribeirao':    'act_1513320246332787',
-  'vh-manauara':    'act_987229157329989',
-  'osklen-manaus':  'act_1932980590891353',
-  'osklen-pvh':     'act_1328386968672119',
-  'plie':           'act_1640020353363366',
-
-  // Grupo Barbosa
-  'barbosa-calcados': 'act_1178750667162275',
-  'arezzo':           'act_4081176875538396',
-  'sirigaita':        'act_1303445614313087',
-  'zoom':             'act_1416126299498677',
-  'flags':            'act_1411702346977537',
-
-  // Grupo Paralelas
-  'paralelas-dom-luis':   'act_1063440691350368',
-  'paralelas-monumental': 'act_484251287405568',
-  'paralelas-reserva':    'act_558018988137615',
-
-  // Grupo Ferracini
-  'ferracini-americana':    'act_1958680818101781',
-  'ferracini-valinhos':     'act_929794346367999',
-  'ferracini-piracicaba':   'act_1013886770432374',
-  'ferracini-villa-romana': 'act_1351413546644046',
-
-  // Grupo Lupo
-  'lupo-boa-vista':    'act_946974293600178',
-  'lupo-carrefour':    'act_1898748837226656',
-  'lupo-manauara':     'act_1908312336258416', // mesma conta (Manauara/Ponta Negra/Sumaúma)
-  'lupo-ponta-negra':  'act_1908312336258416', // mesma conta (Manauara/Ponta Negra/Sumaúma)
-  'lupo-sao-caetano':  'act_1673371776754441',
-  'lupo-sports':       'act_1845155085964818',
-  'lupo-sumauma':      'act_1908312336258416', // mesma conta (Manauara/Ponta Negra/Sumaúma)
-
-  // Clientes avulsos
-  'amo-outlet':          'act_454683831725906',
-  'anjo-colours':        'act_1147859020455957',
-  'b201':                'act_1402987621169330',
-  'carrano':             'act_1495252901655411',
-  'democrata-rio-verde': 'act_1366988761930824',
-  'guapa':               'act_762506169917049',
-  'kipasso':             'act_623245078750813',
-  'mega-calcados':       'act_1554142619144234',
-  'sergios':             'act_1310366007107010',
+  'carinha-de-anjo':        'act_3790847197724661',
+  'usaflex-plaza-sul':      'act_2143069829819848',
+  'rockpoint-ca02':         'act_2010622213141951',
+  'uza-shoes-cascavel':     'act_1497602305263041',
+  'love-shoes':             'act_327368019132662',
+  'rockpoint-ads':          'act_514835263002254',
+  'rockpoint-bck':          'act_310335547366802',
+  'marina-moulin':          'act_693664311822663',
+  'love-shoes-kids':        'act_1302116720445122',
+  'clube-melissa':          'act_943395840538554',
+  'clube-melissa-shopping': 'act_545485038045979',
+  'clube-melissa-ipa':      'act_897413265614825',
+  'mahana-sandalhas':       'act_8832559756796958',
+  'clube-melissa-teo':      'act_872077818230517',
+  'urbana232':              'act_1231918308487819',
+  'menina-bonita':          'act_1356303716019385',
+  'anacapri-es':            'act_747512548198128',
+  'melissa-joao-cachoeira': 'act_731368023341850',
+  'patricia-costa':         'act_1275679377741222',
+  'usaflex-mineiros':       'act_1639815984011278',
+  'renatha-barbosa':        'act_2180868542717263',
+  'bottero-passeio':        'act_2379872029146176',
+  'luxxx-calcados':         'act_959713943220905',
+  'sem-nome-819':           'act_819307427528858',
+  'rz-sapataria':           'act_1197899912321006',
 };

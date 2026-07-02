@@ -3,107 +3,43 @@ import { Copy, Check, RefreshCw, MessageSquare } from 'lucide-react';
 import { META_ACCOUNTS } from '../../config/metaAccounts';
 import { getAccountFeedbackData, FeedbackData } from '../../services/metaService';
 
-// Nome de exibição para cada chave do META_ACCOUNTS
 const DISPLAY_NAMES: Record<string, string> = {
-  // Yamcol
-  'stanley':        'Stanley Boulevard',
-  'tommy':          'Tommy Hilfiger',
-  'milon':          'Milon Boulevard',
-  'taco':           'Taco Boulevard',
-  'vh-boulevard':   'Victor Hugo Boulevard',
-  'vh-bosque':      'Victor Hugo Bosque',
-  'vh-fortaleza':   'Victor Hugo Fortaleza',
-  'vh-ribeirao':    'Victor Hugo Ribeirão Preto',
-  'vh-manauara':    'Victor Hugo Manauara',
-  'osklen-manaus':  'Osklen Manaus',
-  'osklen-pvh':     'Osklen Porto Velho',
-  'plie':           'Plié Boulevard',
-  // Barbosa
-  'barbosa-calcados': 'Barbosa Calçados',
-  'arezzo':           'Arezzo GV',
-  'sirigaita':        'Sirigaita Calçados',
-  'zoom':             'Zoom Calçados',
-  'flags':            'Flags Calçados',
-  // Paralelas
-  'paralelas-dom-luis':   'Paralelas Dom Luís',
-  'paralelas-monumental': 'Paralelas Monumental',
-  'paralelas-reserva':    'Paralelas Reserva',
-  // Ferracini
-  'ferracini-americana':    'Ferracini Americana',
-  'ferracini-valinhos':     'Ferracini Valinhos',
-  'ferracini-piracicaba':   'Ferracini Piracicaba',
-  'ferracini-villa-romana': 'Ferracini Florianópolis',
-  // Lupo
-  'lupo-boa-vista':   'Lupo Boa Vista',
-  'lupo-carrefour':   'Lupo Carrefour',
-  'lupo-manauara':    'Lupo Manauara',
-  'lupo-ponta-negra': 'Lupo Ponta Negra',
-  'lupo-sao-caetano': 'Lupo São Caetano',
-  'lupo-sports':      'Lupo Sport',
-  'lupo-sumauma':     'Lupo Sumaúma',
-  // Avulsos
-  'amo-outlet':          'Amo Outlet',
-  'anjo-colours':        'Anjo Colours',
-  'b201':                'B 201 Calçados',
-  'carrano':             'Carrano',
-  'democrata-rio-verde': 'Democrata Rio Verde',
-  'guapa':               'Guapa',
-  'kipasso':             'Kipasso Calçados',
-  'mega-calcados':       'Mega Calçados',
-  'sergios':             "Sergio's",
+  'carinha-de-anjo':        'Carinha de Anjo',
+  'usaflex-plaza-sul':      'Usaflex Plaza Sul',
+  'rockpoint-ca02':         'RockPoint (CA02)',
+  'uza-shoes-cascavel':     'Uza Shoes Cascavel',
+  'love-shoes':             'LOVE SHOES',
+  'rockpoint-ads':          'RockPoint Ads',
+  'rockpoint-bck':          'RockPoint Bck',
+  'marina-moulin':          'Marina Moulin',
+  'love-shoes-kids':        'Love Shoes Kids',
+  'clube-melissa':          'Clube Melissa',
+  'clube-melissa-shopping': 'Clube Melissa Shopping',
+  'clube-melissa-ipa':      'Clube Melissa IPA',
+  'mahana-sandalhas':       'MAHANA SANDALHAS',
+  'clube-melissa-teo':      'Clube Melissa TEO',
+  'urbana232':              'Urbana232',
+  'menina-bonita':          'Menina Bonita Magazine',
+  'anacapri-es':            'Anacapri ES (Vitória & Vila Velha)',
+  'melissa-joao-cachoeira': 'Melissa João Cachoeira',
+  'patricia-costa':         'Patrícia Costa Calçados',
+  'usaflex-mineiros':       'Usaflex Mineiros',
+  'renatha-barbosa':        'Renatha Barbosa C.',
+  'bottero-passeio':        'Bottero Passeio das Águas',
+  'luxxx-calcados':         'LUXXX Calçados',
+  'sem-nome-819':           '(conta sem nome)',
+  'rz-sapataria':           'RZ Sapataria',
 };
 
-// Contas com múltiplas lojas: cada loja filtra por keyword no nome de campanha
-// Padrão dos clientes: [PONTA NEGRA], [SUMAUMA], [MANAUARA], [BOSQUE], [BOULEVARD]
-const MULTI_STORE_GROUPS = [
-  {
-    accountId: META_ACCOUNTS['lupo-manauara'], // act_1908312336258416
-    stores: [
-      { key: 'lupo-manauara',    name: 'Lupo Manauara',    nameFilter: 'MANAUARA'    },
-      { key: 'lupo-ponta-negra', name: 'Lupo Ponta Negra', nameFilter: 'PONTA NEGRA' },
-      { key: 'lupo-sumauma',     name: 'Lupo Sumaúma',     nameFilter: 'SUMAUMA'     },
-    ],
-  },
-  {
-    accountId: META_ACCOUNTS['vh-boulevard'], // act_739663585617111
-    stores: [
-      { key: 'vh-boulevard', name: 'Victor Hugo Boulevard', nameFilter: 'BOULEVARD' },
-      { key: 'vh-bosque',    name: 'Victor Hugo Bosque',    nameFilter: 'BOSQUE'    },
-    ],
-  },
-];
-
-const MULTI_STORE_KEYS = new Set(
-  MULTI_STORE_GROUPS.flatMap(g => g.stores.map(s => s.key)),
-);
-
 interface StoreEntry {
-  key:         string;
-  name:        string;
-  accountId:   string;
-  nameFilter?: string;
+  key:       string;
+  name:      string;
+  accountId: string;
 }
 
-// Lojas de conta única
-const SINGLE_STORE_ENTRIES: StoreEntry[] = Object.entries(META_ACCOUNTS)
-  .filter(([key]) => !MULTI_STORE_KEYS.has(key))
-  .map(([key, accountId]) => ({
-    key,
-    name: DISPLAY_NAMES[key] ?? key,
-    accountId,
-  }));
-
-// Lojas de conta compartilhada (com filtro por nome de campanha)
-const MULTI_STORE_ENTRIES: StoreEntry[] = MULTI_STORE_GROUPS.flatMap(g =>
-  g.stores.map(s => ({ ...s, accountId: g.accountId })),
-);
-
-const ALL_STORES: StoreEntry[] = [
-  ...SINGLE_STORE_ENTRIES,
-  ...MULTI_STORE_ENTRIES,
-].sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
-
-// ─── Formatação ───────────────────────────────────────────────────────────────
+const ALL_STORES: StoreEntry[] = Object.entries(META_ACCOUNTS)
+  .map(([key, accountId]) => ({ key, name: DISPLAY_NAMES[key] ?? key, accountId }))
+  .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
 
 type StoreState =
   | { status: 'idle' }
@@ -156,8 +92,6 @@ function buildMessage(name: string, data: FeedbackData): string {
   return lines.join('\n');
 }
 
-// ─── Componente ───────────────────────────────────────────────────────────────
-
 export function MetaFeedbackView() {
   const [states, setStates] = useState<Record<string, StoreState>>(() =>
     Object.fromEntries(ALL_STORES.map(s => [s.key, { status: 'idle' }])),
@@ -174,9 +108,9 @@ export function MetaFeedbackView() {
     setStates(Object.fromEntries(ALL_STORES.map(s => [s.key, { status: 'loading' }])));
 
     await Promise.all(
-      ALL_STORES.map(async ({ key, accountId, nameFilter }) => {
+      ALL_STORES.map(async ({ key, accountId }) => {
         try {
-          const data = await getAccountFeedbackData(accountId, nameFilter);
+          const data = await getAccountFeedbackData(accountId);
           setStore(key, data ? { status: 'done', data } : { status: 'empty' });
         } catch (err: any) {
           setStore(key, { status: 'error', message: err?.message ?? 'Erro desconhecido' });
@@ -199,12 +133,11 @@ export function MetaFeedbackView() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white">Feedbacks Meta</h1>
           <p className="text-sm text-gray-500 mt-1">
-            Gera as mensagens de resultado dos últimos 7 dias para todos os clientes.
+            Resultados dos últimos 7 dias — {ALL_STORES.length} contas.
           </p>
         </div>
         <button
@@ -217,7 +150,6 @@ export function MetaFeedbackView() {
         </button>
       </div>
 
-      {/* Resumo */}
       {!running && doneCount > 0 && (
         <div className="flex gap-4 text-xs">
           <span className="text-green-400 font-bold">{doneCount} gerados</span>
@@ -226,7 +158,6 @@ export function MetaFeedbackView() {
         </div>
       )}
 
-      {/* Cards */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {ALL_STORES.map(({ key, name }) => {
           const state = states[key];
@@ -237,7 +168,6 @@ export function MetaFeedbackView() {
               key={key}
               className="bg-brand-medium border border-brand-light rounded-xl p-4 flex flex-col gap-3"
             >
-              {/* Store header */}
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <MessageSquare className="w-4 h-4 text-brand-purple shrink-0" />
@@ -256,7 +186,6 @@ export function MetaFeedbackView() {
                 )}
               </div>
 
-              {/* Content */}
               {state.status === 'idle' && (
                 <p className="text-xs text-gray-600 italic">Clique em "Gerar Feedbacks" para buscar.</p>
               )}
