@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-dark: var(--bg-primary);
+  --color-brand-medium: var(--bg-secondary);
+  --color-brand-light: var(--bg-tertiary);
+  --color-brand-purple: #7c3aed;
+  --color-brand-purple-light: #a78bfa;
+}
+
+:root {
+  --bg-primary: #070709;
+  --bg-secondary: #0e0e12;
+  --bg-tertiary: #14141a;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border-primary: #14141a;
+  --accent-primary: #7c3aed;
+}
+
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #000000;
+  --text-secondary: #1e293b;
+  --text-muted: #64748b;
+  --border-primary: #cbd5e1;
+  --accent-primary: #7c3aed;
+}
+
+/* Overriding specific classes in light mode to adapt dark-themed classes beautifully */
+.light, .light * {
+  color-scheme: light;
+}
+
+/* Body & root and background layout wrappers */
+.light,
+.light body,
+.light #root,
+.light .bg-brand-dark {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.light .bg-[#070709], 
+.light .bg-[#0e0e12], 
+.light .bg-[#0c0c14]/90, 
+.light .bg-[#08080c], 
+.light .bg-[#0e0e16],
+.light .bg-brand-medium,
+.light aside,
+.light header {
+  background-color: #ffffff !important;
+}
+
+.light .bg-brand-light {
+  background-color: #f1f5f9 !important;
+}
+
+/* Content cards and elements borders */
+.light .border-brand-light, 
+.light .border-brand-light\/35, 
+.light .border-brand-light\/30, 
+.light .border-brand-light\/20,
+.light .border-white\/5, 
+.light .border-white\/10, 
+.light .border-white\/15, 
+.light .border-white\/20, 
+.light .border-white\/30,
+.light .border-gray-850,
+.light .border-gray-800,
+.light .border-gray-700 {
+  border-color: #cbd5e1 !important;
+}
+
+/* Correct text colors for high readability */
+.light .text-white,
+.light .text-gray-100 {
+  color: #000000 !important;
+}
+
+.light .text-gray-200 {
+  color: #0f172a !important;
+}
+
+.light .text-gray-300 {
+  color: #1e293b !important;
+}
+
+.light .text-gray-400 {
+  color: #334155 !important;
+}
+
+.light .text-gray-500 {
+  color: #475569 !important;
+}
+
+.light .text-gray-650,
+.light .text-gray-600 {
+  color: #515e73 !important;
+}
+
+.light .text-gray-700 {
+  color: #64748b !important;
+}
+
+.light .text-gray-800 {
+  color: #cbd5e1 !important;
+}
+
+/* Translucent layer background colors */
+.light .bg-brand-dark\/30, 
+.light .bg-brand-dark\/50 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .bg-brand-medium\/40, 
+.light .bg-brand-medium\/50, 
+.light .bg-brand-medium\/95 {
+  background-color: #ffffff !important;
+}
+
+.light .bg-brand-light\/30, 
+.light .bg-brand-light\/40, 
+.light .bg-brand-light\/50, 
+.light .bg-brand-light\/75 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .bg-white\/5, 
+.light .bg-white\/10 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .bg-white\/\[0\.02\] {
+  background-color: #f8fafc !important;
+}
+
+.light .hover\:bg-white\/\[0\.02\]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.light .hover\:bg-brand-light\/50:hover {
+  background-color: #e2e8f0 !important;
+}
+
+.light .hover\:bg-brand-light\/40:hover {
+  background-color: #e2e8f0 !important;
+}
+
+.light .hover\:bg-brand-light\/20:hover {
+  background-color: #e2e8f0 !important;
+}
+
+/* Input Placeholders */
+.light input::placeholder,
+.light textarea::placeholder,
+.light .placeholder-gray-600::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Proper inputs border and visual styles */
+.light input,
+.light textarea,
+.light select {
+  border-color: #cbd5e1 !important;
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: #7c3aed !important;
+}
+
+/* Colors and custom themes */
+.light .text-brand-purple,
+.light .text-brand-purple-light,
+.light .text-brand-purple2 {
+  color: #6d28d9 !important;
+}
+
+.light .text-indigo-205,
+.light .text-indigo-200,
+.light .text-indigo-300 {
+  color: #4f46e5 !important;
+}
+
+.light .text-emerald-400,
+.light .text-emerald-300,
+.light .text-[#10b981] {
+  color: #15803d !important;
+}
+
+.light .bg-emerald-500\/10,
+.light .bg-[#10b981]\/10 {
+  background-color: rgba(34, 197, 94, 0.12) !important;
+}
+
+.light .bg-brand-purple\/10 {
+  background-color: rgba(124, 58, 237, 0.08) !important;
+}
+
+.light .bg-amber-950\/30 {
+  background-color: #fef3c7 !important;
+}
+
+.light .border-amber-900\/30 {
+  border-color: #fcd34d !important;
+}
+
+.light .text-amber-500,
+.light .text-amber-600 {
+  color: #b45309 !important;
+}
+
+.light .bg-indigo-950\/30 {
+  background-color: #e0e7ff !important;
+}
+
+.light .border-indigo-900\/30 {
+  border-color: #c7d2fe !important;
+}
+
+.light .text-indigo-600 {
+  color: #4f46e5 !important;
+}
+
+/* CRITICAL: Retain pristine white text inside filled primary interaction buttons and badges */
+.light button.bg-brand-purple,
+.light button.bg-brand-purple *,
+.light button[class*="bg-brand-purple"],
+.light button[class*="bg-brand-purple"] *,
+.light button[class*="bg-emerald"],
+.light button[class*="bg-emerald"] *,
+.light button[class*="bg-indigo"],
+.light button[class*="bg-indigo"] *,
+.light a[class*="bg-brand-purple"],
+.light a[class*="bg-brand-purple"] *,
+.light .bg-brand-purple .text-white,
+.light .bg-brand-purple-light .text-white,
+.light .bg-emerald-500 .text-white,
+.light .bg-emerald-600 .text-white,
+.light .bg-indigo-600 .text-white,
+.light .text-white-force {
+  color: #ffffff !important;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mask-fade-right {
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+}
