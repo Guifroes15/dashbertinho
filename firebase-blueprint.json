@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "System user with role and group access.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "client"] },
+        "groupId": { "type": "string", "description": "ID of the group this user belongs to (null for admin)" },
+        "name": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "ActionPlan": {
+      "title": "Action Plan",
+      "description": "Tasks and AI suggestions for a specific group/store.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "groupId": { "type": "string" },
+        "month": { "type": "string", "description": "YYYY-MM" },
+        "tasks": { 
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "status": { "type": "string", "enum": ["pending", "completed"] },
+              "createdAt": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+        "aiSuggestion": { "type": "string" },
+        "lastAnalyzedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["groupId", "month"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and permissions."
+    },
+    "/groups/{groupId}/plans/{planId}": {
+      "schema": "ActionPlan",
+      "description": "Action plans per group and month."
+    }
+  }
+}
