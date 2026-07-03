@@ -22,6 +22,6 @@ export const META_ACCOUNTS: Record<string, string> = {
   'renatha-barbosa':        'act_2180868542717263',
   'bottero-passeio':        'act_2379872029146176',
   'luxxx-calcados':         'act_959713943220905',
-  'sem-nome-819':           'act_819307427528858',
+  'marli-elias':            'act_819307427528858',
   'rz-sapataria':           'act_1197899912321006',
 };

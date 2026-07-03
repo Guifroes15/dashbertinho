@@ -27,7 +27,7 @@ const DISPLAY_NAMES: Record<string, string> = {
   'renatha-barbosa':        'Renatha Barbosa C.',
   'bottero-passeio':        'Bottero Passeio das Águas',
   'luxxx-calcados':         'LUXXX Calçados',
-  'sem-nome-819':           '(conta sem nome)',
+  'marli-elias':            'Marli Elias',
   'rz-sapataria':           'RZ Sapataria',
 };
 
